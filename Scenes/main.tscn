@@ -1,0 +1,136 @@
+[gd_scene load_steps=14 format=3 uid="uid://baiey7jt3v5gs"]
+
+[ext_resource type="Texture2D" uid="uid://dhm3uem18ngba" path="res://Sprites/Meteors/meteorBrown_small1.png" id="1_a01ct"]
+[ext_resource type="Texture2D" uid="uid://c7jmvulauu213" path="res://Sprites/Players/playerShip2_red.png" id="1_f48jg"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_iot2d"]
+[ext_resource type="Texture2D" uid="uid://t5hyq06d80ia" path="res://Sprites/Meteors/meteorBrown_small2.png" id="2_de1jc"]
+[ext_resource type="Texture2D" uid="uid://bawmr3fimc84v" path="res://Sprites/Meteors/meteorBrown_tiny1.png" id="3_lvint"]
+[ext_resource type="Script" path="res://Scripts/mouse.gd" id="3_wpghu"]
+[ext_resource type="Texture2D" uid="uid://0irwvseavrms" path="res://Sprites/Cursor/target_round_b.png" id="4_d7u48"]
+[ext_resource type="Texture2D" uid="uid://blsigldxn3nqi" path="res://Sprites/Meteors/meteorBrown_tiny2.png" id="4_q2bi6"]
+[ext_resource type="Texture2D" uid="uid://cdbxf6jm1d3f1" path="res://Sprites/Meteors/meteorGrey_tiny1.png" id="5_lgy0p"]
+[ext_resource type="Texture2D" uid="uid://ckeogyy57qqqn" path="res://Sprites/Meteors/meteorGrey_tiny2.png" id="6_24egb"]
+[ext_resource type="Texture2D" uid="uid://b2sa42xrigt5o" path="res://Sprites/Meteors/meteorGrey_small2.png" id="7_mgl3e"]
+[ext_resource type="Texture2D" uid="uid://cejiverm1cn8d" path="res://Sprites/Meteors/meteorGrey_small1.png" id="8_3asnx"]
+[ext_resource type="PackedScene" uid="uid://mk74wgpi1wko" path="res://Scenes/enemy_spawn.tscn" id="13_omduc"]
+
+[node name="Main" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1280, 720)
+
+[node name="BG" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0.999999, 10)
+scale = Vector2(1.09034, 1.10227)
+color = Color(0.000175582, 2.10173e-07, 0.000731455, 1)
+polygon = PackedVector2Array(-175, -154, -175, 685, -175, 802, 607, 802, 1419, 811, 1419, -157)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 720)
+
+[node name="MeteorBrownSmall1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(262, 499)
+texture = ExtResource("1_a01ct")
+
+[node name="MeteorBrownSmall2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1020, 391)
+texture = ExtResource("2_de1jc")
+
+[node name="MeteorBrownTiny1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(154, 175)
+texture = ExtResource("3_lvint")
+
+[node name="MeteorBrownTiny2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(830, 109)
+texture = ExtResource("4_q2bi6")
+
+[node name="MeteorBrownSmall3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(392, 45)
+texture = ExtResource("2_de1jc")
+
+[node name="MeteorBrownSmall4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(620, 593)
+texture = ExtResource("1_a01ct")
+
+[node name="MeteorBrownTiny3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(124, 589)
+texture = ExtResource("4_q2bi6")
+
+[node name="MeteorBrownTiny4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1052, 91)
+texture = ExtResource("3_lvint")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1280, 720)
+
+[node name="MeteorGreyTiny1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(606, 413)
+texture = ExtResource("5_lgy0p")
+
+[node name="MeteorGreyTiny2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(158, 329)
+texture = ExtResource("6_24egb")
+
+[node name="MeteorGreySmall2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(614, 81)
+texture = ExtResource("7_mgl3e")
+
+[node name="MeteorGreySmall1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(926, 623)
+texture = ExtResource("8_3asnx")
+
+[node name="MeteorGreySmall3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(192, 61)
+texture = ExtResource("8_3asnx")
+
+[node name="MeteorGreySmall4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(1094, 287)
+texture = ExtResource("7_mgl3e")
+
+[node name="MeteorGreyTiny3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(828, 235)
+texture = ExtResource("5_lgy0p")
+
+[node name="MeteorGreyTiny4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(824, 531)
+texture = ExtResource("6_24egb")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(456, 278)
+script = ExtResource("1_iot2d")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+rotation = 1.5708
+texture = ExtResource("1_f48jg")
+
+[node name="Marker2D" type="Marker2D" parent="Player"]
+position = Vector2(45, 0)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="EnemySpawn" parent="Player" instance=ExtResource("13_omduc")]
+position = Vector2(-1219, -563)
+
+[node name="EnemySpawn2" parent="Player" instance=ExtResource("13_omduc")]
+position = Vector2(-1163, 1418)
+
+[node name="EnemySpawn3" parent="Player" instance=ExtResource("13_omduc")]
+position = Vector2(2561, 1467)
+
+[node name="EnemySpawn4" parent="Player" instance=ExtResource("13_omduc")]
+position = Vector2(2554, -535)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+polygon = PackedVector2Array(-35, -39, -6, -56, 18, -13, 37, -5, 38, 4, 20, 9, -5, 53, -7, 56, -34, 37, -29, 15, -39, 11, -38, -12, -29, -18)
+
+[node name="Mouse" type="Node2D" parent="."]
+script = ExtResource("3_wpghu")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Mouse"]
+texture = ExtResource("4_d7u48")

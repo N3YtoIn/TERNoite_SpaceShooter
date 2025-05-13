@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqtm5yc8l48gf"]
+
+[ext_resource type="Script" path="res://Scripts/laser.gd" id="1_s2fbo"]
+[ext_resource type="Texture2D" uid="uid://duq27d3bakyui" path="res://Sprites/Lasers/laserRed07.png" id="2_dy3xv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kplin"]
+size = Vector2(35, 8)
+
+[node name="Laser" type="Area2D" groups=["Laser"]]
+script = ExtResource("1_s2fbo")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_dy3xv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_kplin")

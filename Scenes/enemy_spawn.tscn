@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://mk74wgpi1wko"]
+
+[ext_resource type="Script" path="res://Scripts/enemy_spawn.gd" id="1_3urnu"]
+
+[node name="EnemySpawn" type="Node2D"]
+position = Vector2(-350, 58)
+script = ExtResource("1_3urnu")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-14, -9, -2, -25, 11, -10, -1, 5)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
