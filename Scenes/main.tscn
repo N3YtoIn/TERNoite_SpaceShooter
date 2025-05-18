@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://baiey7jt3v5gs"]
+[gd_scene load_steps=17 format=3 uid="uid://baiey7jt3v5gs"]
 
 [ext_resource type="Texture2D" uid="uid://dhm3uem18ngba" path="res://Sprites/Meteors/meteorBrown_small1.png" id="1_a01ct"]
 [ext_resource type="Texture2D" uid="uid://c7jmvulauu213" path="res://Sprites/Players/playerShip2_red.png" id="1_f48jg"]
@@ -12,7 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://ckeogyy57qqqn" path="res://Sprites/Meteors/meteorGrey_tiny2.png" id="6_24egb"]
 [ext_resource type="Texture2D" uid="uid://b2sa42xrigt5o" path="res://Sprites/Meteors/meteorGrey_small2.png" id="7_mgl3e"]
 [ext_resource type="Texture2D" uid="uid://cejiverm1cn8d" path="res://Sprites/Meteors/meteorGrey_small1.png" id="8_3asnx"]
+[ext_resource type="PackedScene" uid="uid://g55wvaid3u3j" path="res://Scenes/power_up_spawner.tscn" id="12_uw1ho"]
 [ext_resource type="PackedScene" uid="uid://mk74wgpi1wko" path="res://Scenes/enemy_spawn.tscn" id="13_omduc"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="14_yvmmg"]
+[ext_resource type="FontFile" uid="uid://b21tutcy7piev" path="res://Fonts/Starjedi.ttf" id="15_bgv6p"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,9 +23,10 @@
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2(1280, 720)
+metadata/_edit_lock_ = true
 
 [node name="BG" type="Polygon2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(0.999999, 10)
+position = Vector2(3, 9)
 scale = Vector2(1.09034, 1.10227)
 color = Color(0.000175582, 2.10173e-07, 0.000731455, 1)
 polygon = PackedVector2Array(-175, -154, -175, 685, -175, 802, 607, 802, 1419, 811, 1419, -157)
@@ -30,6 +34,7 @@ polygon = PackedVector2Array(-175, -154, -175, 685, -175, 802, 607, 802, 1419, 8
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(1280, 720)
+metadata/_edit_lock_ = true
 
 [node name="MeteorBrownSmall1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(262, 499)
@@ -66,6 +71,7 @@ texture = ExtResource("3_lvint")
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(1280, 720)
+metadata/_edit_lock_ = true
 
 [node name="MeteorGreyTiny1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2(606, 413)
@@ -125,8 +131,25 @@ position = Vector2(2561, 1467)
 [node name="EnemySpawn4" parent="Player" instance=ExtResource("13_omduc")]
 position = Vector2(2554, -535)
 
+[node name="PowerUpSpawner" parent="Player" instance=ExtResource("12_uw1ho")]
+position = Vector2(-456, -278)
+metadata/_edit_group_ = true
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
 polygon = PackedVector2Array(-35, -39, -6, -56, 18, -13, 37, -5, 38, 4, 20, 9, -5, 53, -7, 56, -34, 37, -29, 15, -39, 11, -38, -12, -29, -18)
+
+[node name="Detector" type="Area2D" parent="Player"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player/Detector"]
+polygon = PackedVector2Array(-37, -40, -6, -58, 19, -14, 39, -6, 40, 6, 22, 13, -3, 55, -7, 59, -36, 38, -31, 16, -40, 12, -39, -13, -31, -18)
+
+[node name="BoostTimer" type="Timer" parent="Player"]
+wait_time = 5.0
+one_shot = true
+
+[node name="InvincibleTimer" type="Timer" parent="Player"]
+wait_time = 3.0
+one_shot = true
 
 [node name="Mouse" type="Node2D" parent="."]
 script = ExtResource("3_wpghu")
@@ -134,3 +157,30 @@ metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Mouse"]
 texture = ExtResource("4_d7u48")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("14_yvmmg")
+
+[node name="KillsLabel" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 145.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("15_bgv6p")
+theme_override_font_sizes/font_size = 50
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+offset_top = 639.0
+offset_right = 1279.0
+offset_bottom = 720.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("15_bgv6p")
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="Player/Detector" to="Player" method="_on_detector_area_entered"]
+[connection signal="timeout" from="Player/BoostTimer" to="Player" method="_on_boost_timer_timeout"]
+[connection signal="timeout" from="Player/InvincibleTimer" to="Player" method="_on_invincible_timer_timeout"]

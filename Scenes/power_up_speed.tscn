@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://vvmsc7yaix0h"]
+
+[ext_resource type="Script" path="res://Scripts/ColorPowers.gd" id="1_27smy"]
+[ext_resource type="Texture2D" uid="uid://otj3armm02c1" path="res://Sprites/Power-ups/bolt_gold.png" id="1_phxg1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cetlu"]
+radius = 9.0
+
+[node name="PowerUpSpeed" type="Area2D" groups=["SpeedPowerup"]]
+position = Vector2(580, 203)
+script = ExtResource("1_27smy")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cetlu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_phxg1")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://n1qm333nhim3"]
+
+[ext_resource type="Texture2D" uid="uid://dswkbp8wnfe3d" path="res://Sprites/Power-ups/shield_silver.png" id="1_vnmly"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_17xon"]
+radius = 12.0
+
+[node name="PowerUpInvencible" type="Area2D" groups=["InvincibilityPowerup"]]
+position = Vector2(555, 197)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vnmly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_17xon")

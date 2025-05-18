@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxx3m3fn30m2j"]
+[gd_scene load_steps=3 format=3 uid="uid://dxx3m3fn30m2j"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_5jwp7"]
 [ext_resource type="Texture2D" uid="uid://bnajv3khshaal" path="res://Sprites/Enemies/enemyRed2.png" id="2_sl26s"]
 
-[sub_resource type="Gradient" id="Gradient_kchf6"]
-offsets = PackedFloat32Array(0, 0.486667, 0.566667, 0.753333, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.601937, 0.601937, 0.601937, 1, 0.700885, 0.700885, 0.700885, 1, 0.8, 0.8, 0.8, 1, 1, 1, 1, 1)
-
-[node name="Enemy" type="Area2D" groups=["Laser"]]
+[node name="Enemy" type="Area2D" groups=["Enemies", "Laser"]]
 position = Vector2(-59, 12)
 script = ExtResource("1_5jwp7")
 
@@ -16,11 +12,13 @@ rotation = -1.5708
 texture = ExtResource("2_sl26s")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(-8, -52, 41, -22, 41, -6, 24, -9, 25, -8, 25, 6, 22, 9, 42, 6, 41, 23, -8, 52, -15, 51, -16, 35, -28, 19, -32, 18, -42, 0, -33, -18, -28, -19, -15, -34, -14, -52)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
 amount = 5000
+lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 lifetime_randomness = 1.0
@@ -35,8 +33,10 @@ linear_accel_min = 20.0
 linear_accel_max = 20.0
 scale_amount_min = 5.0
 scale_amount_max = 5.0
-color = Color(0.755844, 0.300104, 0.345124, 1)
-color_ramp = SubResource("Gradient_kchf6")
+color = Color(0.84406, 0.363775, 0.0309213, 1)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="CPUParticles2D" to="." method="_on_cpu_particles_2d_finished"]

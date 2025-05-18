@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://doef2wtek7b3p"]
+
+[ext_resource type="Texture2D" uid="uid://bvh62e12nekhp" path="res://Sprites/Background/space.jpg" id="1_7t2w4"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_fksok"]
+[ext_resource type="FontFile" uid="uid://b21tutcy7piev" path="res://Fonts/Starjedi.ttf" id="2_s2mqr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ccv"]
+bg_color = Color(0.0392157, 0.0392157, 0.0392157, 0.384314)
+corner_detail = 10
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fksok")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_7t2w4")
+metadata/_edit_lock_ = true
+
+[node name="LastScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 659.0
+offset_right = 391.0
+offset_bottom = 720.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s2mqr")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 392.0
+offset_bottom = 721.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x8ccv")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 12.0
+offset_top = 19.0
+offset_right = 382.0
+offset_bottom = 281.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s2mqr")
+theme_override_font_sizes/font_size = 70
+text = "Star 
+invaders"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 330.0
+offset_right = 374.0
+offset_bottom = 471.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(0.313325, 0.548259, 1, 1)
+theme_override_colors/font_hover_color = Color(0.313726, 0.54902, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.313726, 0.54902, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s2mqr")
+theme_override_font_sizes/font_size = 50
+text = "PLAY"
+flat = true
+
+[node name="Quit" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 493.0
+offset_right = 374.0
+offset_bottom = 634.0
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_pressed_color = Color(1, 0.233035, 0.275491, 1)
+theme_override_colors/font_hover_color = Color(1, 0.231373, 0.27451, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.231373, 0.27451, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_s2mqr")
+theme_override_font_sizes/font_size = 50
+text = "quit"
+flat = true
+
+[connection signal="pressed" from="Panel/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/Quit" to="." method="_on_quit_pressed"]
